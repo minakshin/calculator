@@ -87,5 +87,12 @@ RSpec.describe Calculator::StringCalculator do
         expect(subject).to eq(2)
       end
     end
+
+    context 'when number is equal to 1000' do
+      let(:numbers) { "1000,2" }
+      it "returns the sum of the numbers" do
+        expect(subject).to eq(1002)
+      end
+    end
   end
 end

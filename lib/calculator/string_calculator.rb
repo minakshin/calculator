@@ -14,7 +14,7 @@ module Calculator
       negatives = numbers.select(&:negative?)
       raise NegativeNumberError, "Negatives numbers not allowed #{negatives.join(', ')}" if negatives.any?
 
-      numbers.select { |number| number < 1000 }.sum
+      numbers.select { |number| number <= 1000 }.sum
     end
   end
 end
