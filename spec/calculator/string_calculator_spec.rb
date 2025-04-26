@@ -52,5 +52,33 @@ RSpec.describe Calculator::StringCalculator do
         expect { subject }.to raise_error(Calculator::StringCalculator::NegativeNumberError, "Negatives numbers not allowed -2, -3")
       end
     end
+
+    context "when the input with any delimiter" do 
+      let(:numbers) { "//;\n1;2" }
+      it "returns the sum of the numbers" do
+        expect(subject).to eq(3)
+      end
+    end
+
+    context "when the input with any delimiter and negative numbers" do
+      let(:numbers) { "//;\n-1;2" }
+      it "raises an error" do
+        expect { subject }.to raise_error(Calculator::StringCalculator::NegativeNumberError, "Negatives numbers not allowed -1")
+      end
+    end
+
+    context "when multiple delimiters" do
+      let(:numbers) { "//[*][%]\n1*2%3" }
+      it "returns the sum of the numbers" do
+        expect(subject).to eq(6)
+      end
+    end
+
+    context "when delimiter is of any length" do
+      let(:numbers) { "//[**][%%]\n1**2%%3" }
+      it "returns the sum of the numbers" do
+        expect(subject).to eq(6)
+      end
+    end
   end
 end

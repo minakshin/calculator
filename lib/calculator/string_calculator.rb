@@ -10,8 +10,8 @@ module Calculator
     def self.add(numbers)
       return 0 if numbers.empty?
 
-      numbers = numbers.split(/[\n,]/).map(&:to_i)
-      negatives = numbers.select { |number| number < 0 }
+      numbers = numbers.scan(/-?\d+/).map(&:to_i)
+      negatives = numbers.select(&:negative?)
       raise NegativeNumberError, "Negatives numbers not allowed #{negatives.join(', ')}" if negatives.any?
 
       numbers.sum
