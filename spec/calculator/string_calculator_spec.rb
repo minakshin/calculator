@@ -24,5 +24,19 @@ RSpec.describe Calculator::StringCalculator do
         expect(subject).to eq(3)
       end
     end
+
+    context "when the input is multiple comma separated numbers" do
+      let(:numbers) { "1,2,3,4,5" }
+      it "returns the sum of the numbers" do
+        expect(subject).to eq(15)
+      end
+    end
+
+    context "when the input is multiple comma separated numbers with newlines" do
+      let(:numbers) { "1\n2,3\n4,5" }
+      it "returns the sum of the numbers" do
+        expect(subject).to eq(15)
+      end
+    end
   end
 end
